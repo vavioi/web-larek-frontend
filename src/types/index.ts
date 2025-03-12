@@ -3,31 +3,36 @@ import { ApiListResponse } from '../components/base/api';
 /**
  * Модель продукта
  */
-export interface Product {
+export interface IProduct {
     /**
     * ID товара
     */
-    id: number;
-
-    /**
-    * Название товара
-    */
-    name: string;
+	id: string;
 
     /**
     * Описание товара
     */
-    description: string;
+	description: string;
 
     /**
     * Изображение товара
     */
-    image: string;
+	image: string;
+
+    /**
+    * Название товара
+    */
+	title: string;
+
+    /**
+    * Категория товара
+    */
+	category: string;
 
     /**
     * Цена товара
     */
-    price: number;
+	price: number | null;
 }
 
 /**
@@ -48,59 +53,47 @@ export interface CartElement {
 /**
  * Методы оплаты
  */
-export type PaymentMethod = 'online' | 'uponReceipt';
+export type TPaymentMethod = 'cash' | 'card';
 
 /**
  * Модель заказа
  */
-export interface Order {
-    /**
-    * ID заказа
-    */
-    id: number;
-
+export interface IOrder {
     /**
     * Список товаров в корзине
     */
-    items: CartElement[];
+	items: IProduct[];
 
     /**
-    * Метод оплаты
+    * Способ оплаты
     */
-    paymentMethod: PaymentMethod;
-
-    /**
-    * Телефон покупателя
-    */
-    phone: string;
-
-    /**
-    * E-mail покупателя
-    */
-    email: string;
+	payment: TPaymentMethod;
 
     /**
     * Адрес покупателя
     */
-    address: string;
+	address: string;
+
+    /**
+    * E-mail покупателя
+    */
+	email: string;
+
+    /**
+    * Телефон покупателя
+    */
+	phone: string;
 }
 
 /**
- * Модель ответа API на запрос
+ * Заказ
  */
-export interface Response<T> {
-    /**
-    * Статус запроса
-    */
-    status: boolean;
+export type TOrderInvoice = Omit<IOrder, 'items'> & {
+	items: string[];
+	total: number;
+};
 
-    /**
-    * Сообщение в ответе
-    */
-    message?: string;
-
-    /**
-    * Данные с сервера
-    */
-    data: T;
-}
+/**
+ * Этап заказа
+ */
+export type TOrderStep = 'receiving' | 'contacts';
