@@ -89,7 +89,14 @@ export interface IOrder {
  * Заказ
  */
 export type TOrderInvoice = Omit<IOrder, 'items'> & {
+    /**
+     * Список идентификаторов товаров
+     */
 	items: string[];
+
+    /**
+     * Общая сумма заказа
+     */
 	total: number;
 };
 

@@ -133,7 +133,7 @@ type ApiPostMethods = 'POST' | 'PUT' | 'DELETE'
 
 Обеспечивает работу событий. Его функции: возможность установить и снять слушателей событий, вызвать слушателей при возникновении события
 
-Реализует интерфейс `IEvents`, использует типы `TEmitterEvent`, `TSubscriber`, `TEventName`:
+Реализует интерфейс `IEvents`, использует типы `EmitterEvent`, `Subscriber`, `EventName`:
 
 ```TS
 type EventName = string | RegExp;
